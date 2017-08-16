@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://static_area.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://big_area.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 50.0
+height = 50.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="static_area" type="Area2D" parent="."]
+
+transform/pos = Vector2( 381.124, 245.983 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+make_it_work = true
+
+[node name="Sprite" type="Sprite" parent="static_area"]
+
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static_area"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="big_area" type="Area2D" parent="."]
+
+transform/pos = Vector2( 329.086, 243.767 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 3 )
+layer_bit = 0
+debug = false
+
+[node name="Sprite" type="Sprite" parent="big_area"]
+
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="big_area"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Button" type="Button" parent="big_area"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -51.0
+margin/top = 52.0
+margin/right = 62.0
+margin/bottom = 72.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "enable collision"
+flat = false
+
+[node name="enabled_timer" type="Timer" parent="big_area"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+
